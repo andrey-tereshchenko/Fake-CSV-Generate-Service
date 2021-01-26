@@ -1,0 +1,8 @@
+.idea/
+venv/
+__pycache__/
+media
+Procfile
+runtime.txt
+live-static-files
+.env

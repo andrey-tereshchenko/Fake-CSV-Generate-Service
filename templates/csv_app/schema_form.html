@@ -1,0 +1,74 @@
+{% extends 'csv_app/base.html' %}
+{% load static %}
+{% block title %}
+    New Schema
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <h3>New Schema</h3>
+        <form method="POST" enctype="multipart/form-data">
+
+            <!-- Security token -->
+            {% csrf_token %}
+
+            <!-- Using the formset -->
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Create</button>
+            <h3>Schema columns</h3>
+            {% for column_field in form.get_column_fields %}
+                {{ column_field }}
+            {% endfor %}
+            {#            <div id="wr_id" class="field_wrapper">#}
+            {#                <div>#}
+            {#                    <a href="javascript:void(0);" class="add_button btn btn-success" title="Add field">Add</a>#}
+            {#                </div>#}
+            {#            </div>#}
+        </form>
+        {#        <h3>Schema columns</h3>#}
+        {#        <div id="wr_id" class="field_wrapper">#}
+        {#            <div id="wrap" class="form-row">#}
+        {#                <div class="form-group col-md-3">#}
+        {#                    <label for="inputColumnName">Column Name</label>#}
+        {#                    <input type="text" class="form-control" id="inputColumnName">#}
+        {#                </div>#}
+        {#                <div class="form-group col-md-3">#}
+        {#                    <label for="inputType">State</label>#}
+        {#                    <select id="inputType" class="form-control">#}
+        {#                        <option selected>-------</option>#}
+        {#                        <option>Full Name</option>#}
+        {#                        <option>Job</option>#}
+        {#                        <option>Email</option>#}
+        {#                        <option>Domain name</option>#}
+        {#                        <option>Phone number</option>#}
+        {#                        <option>Company</option>#}
+        {#                        <option value="txt">Text</option>#}
+        {#                        <option value="int">Integer</option>#}
+        {#                        <option>Address</option>#}
+        {#                        <option>Date</option>#}
+        {#                    </select>#}
+        {#                </div>#}
+        {#                <div class="form-group col-md-1" style="visibility: hidden;">#}
+        {#                    <label for="inputFrom">From</label>#}
+        {#                    <input type="text" class="form-control" id="inputFrom">#}
+        {#                </div>#}
+        {#                <div class="form-group col-md-1" style="visibility: hidden;">#}
+        {#                    <label for="inputTo">To</label>#}
+        {#                    <input type="text" class="form-control" id="inputTo">#}
+        {#                </div>#}
+        {#                <div class="form-group col-md-2">#}
+        {#                    <label for="inputOrder">Order</label>#}
+        {#                    <input type="text" class="form-control" id="inputOrder">#}
+        {#                </div>#}
+        {#            </div>#}
+        {#            <div>#}
+        {#                <a href="javascript:void(0);" class="add_button btn btn-success" title="Add field">Add</a>#}
+        {#            </div>#}
+        {#        </div>#}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="{% static "csv_app/js/main.js" %}"></script>
+{% endblock %}

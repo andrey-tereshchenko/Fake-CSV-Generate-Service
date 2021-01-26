@@ -1,0 +1,47 @@
+{% extends 'csv_app/base.html' %}
+{% block title %}
+    Schemas
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Modified</th>
+                <th scope="col">Status</th>
+                <th scope="col">Download</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for object in object_list %}
+
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ object.schema.name }}</td>
+                    <td>{{ object.created }}</td>
+                    <td>{{ object.get_status_display }}</td>
+                    {#                    <td><a href=''>{{ object.file.name }}</a></td>#}
+                    <td>
+                        {% if object.file %}
+                            <a href='{% url 'download' object.file.name %}'>{{ object.file }}</a>
+                        {% endif %}
+                    </td>
+                    <td><a class="btn btn-success" href="{% url 'delete_dataset' object.id %}">Delete</a></td>
+                    {#                        <td><a class="btn btn-success" href="{% url 'update_schema' object.id %}">Update</a>#}
+                    {#                            <a class="btn btn-success" href="{% url 'delete_schema' object.id %}">Delete</a>#}
+                    {#                        </td>#}
+                </tr>
+            {% empty %}
+                <li>No objects yet.</li>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <a href="{% url 'create_dataset' %}" class="btn btn-success">Create</a>
+    </div>
+{% endblock %}

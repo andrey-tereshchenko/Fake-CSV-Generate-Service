@@ -1,0 +1,15 @@
+.header_title {
+    margin-right: 30%;
+    margin-left: 4%;
+}
+
+.header {
+    background: azure;
+    height: 50px;
+}
+
+#wrap {
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
